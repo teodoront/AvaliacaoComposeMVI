@@ -74,7 +74,8 @@ fun ProdutoCardPreview() {
             id = 1,
             nome = "Chuteira Nike Tiempo 10",
             preco = 245.99,
-            imagemRes = R.drawable.chuteira_nike_01
+            imagemRes = R.drawable.chuteira_nike_01,
+            descricao = ""
         )
     )
 }

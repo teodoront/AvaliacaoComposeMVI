@@ -6,5 +6,6 @@ data class Produto(
     val id: Int,
     val nome: String,
     val preco: Double,
-    @DrawableRes val imagemRes: Int
+    @DrawableRes val imagemRes: Int,
+    val descricao: String
 )

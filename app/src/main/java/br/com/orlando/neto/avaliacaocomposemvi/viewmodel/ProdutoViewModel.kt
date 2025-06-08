@@ -2,7 +2,7 @@ package br.com.orlando.neto.avaliacaocomposemvi.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.orlando.neto.avaliacaocomposemvi.ProdutoIntent
+import br.com.orlando.neto.avaliacaocomposemvi.intent.ProdutoIntent
 import br.com.orlando.neto.avaliacaocomposemvi.data.ProdutoUiState
 import br.com.orlando.neto.avaliacaocomposemvi.repository.ProdutoRepository
 import kotlinx.coroutines.flow.MutableSharedFlow

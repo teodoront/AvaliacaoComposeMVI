@@ -1,4 +1,4 @@
-package br.com.orlando.neto.avaliacaocomposemvi.ui.screen
+package br.com.orlando.neto.avaliacaocomposemvi.ui.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,21 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.BottomBarHome
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.CategoryTabs
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.SearchBarHome
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.TopBarHome
+import br.com.orlando.neto.avaliacaocomposemvi.ui.components.NavigationBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
 fun HomeScreen() {
-    val viewModel: ProdutoViewModel = getViewModel()
+    val viewModel: ProdutoViewModel = koinViewModel()
 
     Scaffold(
-        topBar = { TopBarHome() },
-        bottomBar = { BottomBarHome() }
+
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -32,9 +28,7 @@ fun HomeScreen() {
                 .fillMaxSize()
                 .padding(horizontal = 8.dp, vertical = 8.dp)
         ) {
-            SearchBarHome()
-
-            CategoryTabs()
+            ProdutoScreen()
 
             Spacer(modifier = Modifier.height(16.dp))
 

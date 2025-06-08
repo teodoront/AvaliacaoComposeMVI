@@ -1,4 +1,4 @@
-package br.com.orlando.neto.avaliacaocomposemvi.ui.screen
+package br.com.orlando.neto.avaliacaocomposemvi.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.orlando.neto.avaliacaocomposemvi.ProdutoIntent
+import br.com.orlando.neto.avaliacaocomposemvi.intent.ProdutoIntent
 import br.com.orlando.neto.avaliacaocomposemvi.R
 import br.com.orlando.neto.avaliacaocomposemvi.data.Produto
 import br.com.orlando.neto.avaliacaocomposemvi.data.ProdutoUiState

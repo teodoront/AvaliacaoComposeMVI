@@ -11,37 +11,27 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.orlando.neto.avaliacaocomposemvi.di.appModule
+import br.com.orlando.neto.avaliacaocomposemvi.ui.screen.HomeScreen
+import br.com.orlando.neto.avaliacaocomposemvi.ui.screen.ProdutoScreen
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.AvaliacaoComposeMVITheme
+import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.core.context.GlobalContext.startKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        startKoin {
+            androidContext(this@MainActivity)
+            modules(appModule)
+        }
+
         setContent {
-            AvaliacaoComposeMVITheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            val viewModel: ProdutoViewModel = getViewModel()
+            HomeScreen()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AvaliacaoComposeMVITheme {
-        Greeting("Android")
-    }
-}

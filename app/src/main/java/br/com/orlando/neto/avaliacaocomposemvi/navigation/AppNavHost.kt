@@ -25,7 +25,7 @@ fun AppNavHost() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("home") {
-                HomeScreen()
+                HomeScreen(navController)
             }
             composable("carrinho") {
                 CarrinhoScreen()

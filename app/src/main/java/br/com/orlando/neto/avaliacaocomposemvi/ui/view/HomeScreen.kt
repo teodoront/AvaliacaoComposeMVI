@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.NavigationBarHome
+import androidx.navigation.NavController
 import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
 import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val viewModel: ProdutoViewModel = koinViewModel()
 
     Scaffold(
@@ -40,5 +40,5 @@ fun HomeScreen() {
 @Preview
 @Composable
 private fun HomeScreenPrev() {
-    HomeScreen()
+    //HomeScreen()
 }

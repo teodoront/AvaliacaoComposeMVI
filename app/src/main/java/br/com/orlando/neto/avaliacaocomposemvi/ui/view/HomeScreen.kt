@@ -93,7 +93,7 @@ fun HomeScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             if (categories[selectedIndex].lowercase() == "todos") {
-                ProdutoScreen(viewModel)
+                ProdutoContent(viewModel, navController)
             } else {
                 CategoriaScreen(categoria = categories[selectedIndex])
             }

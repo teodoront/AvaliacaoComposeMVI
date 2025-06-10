@@ -1,5 +1,6 @@
 package br.com.orlando.neto.avaliacaocomposemvi.ui.view
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,8 +15,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import br.com.orlando.neto.avaliacaocomposemvi.intent.ProdutoIntent
 import br.com.orlando.neto.avaliacaocomposemvi.R
 import br.com.orlando.neto.avaliacaocomposemvi.data.Produto
@@ -25,7 +28,7 @@ import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
 
 
 @Composable
-fun ProdutoScreen(viewModel: ProdutoViewModel) {
+fun ProdutoContent(viewModel: ProdutoViewModel, navController: NavController) {
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -37,13 +40,13 @@ fun ProdutoScreen(viewModel: ProdutoViewModel) {
             CircularProgressIndicator()
         }
     } else {
-        ProdutoScreenContent(state)
+        ProdutoScreenContent(state, navController)
     }
 }
 
 
 @Composable
-fun ProdutoScreenContent(state: ProdutoUiState) {
+fun ProdutoScreenContent(state: ProdutoUiState, navController: NavController) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
@@ -53,14 +56,21 @@ fun ProdutoScreenContent(state: ProdutoUiState) {
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(state.produtos) { produto ->
-            ProdutoCard(produto)
+            ProdutoCard(produto = produto, onClick = {
+                val nome = Uri.encode(produto.nome)
+                val preco = Uri.encode("%.2f".format(produto.preco))
+                val imagemRes = produto.imagemRes
+                navController.navigate("detalheProduto/$nome/$preco/$imagemRes")
+            })
         }
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun ProdutoScreenPreview() {
+    val navController = NavController(LocalContext.current)
     val mockState = ProdutoUiState(
         produtos = listOf(
             Produto(1, "Chuteira Nike Tiempo 10", 245.99, R.drawable.chuteira_nike_01,""),
@@ -70,7 +80,7 @@ fun ProdutoScreenPreview() {
         )
     )
 
-    ProdutoScreenContent(mockState)
+    ProdutoScreenContent(mockState, navController)
 }
 
 

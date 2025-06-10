@@ -2,6 +2,7 @@ package br.com.orlando.neto.avaliacaocomposemvi.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,15 +30,20 @@ import br.com.orlando.neto.avaliacaocomposemvi.R
 import br.com.orlando.neto.avaliacaocomposemvi.data.Produto
 
 @Composable
-fun ProdutoCard(produto: Produto, modifier: Modifier = Modifier) {
+fun ProdutoCard(
+    produto: Produto,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit) {
     Column(
-        modifier = modifier.width(180.dp) // ajuste o tamanho conforme o grid
+        modifier = modifier
+            .width(180.dp)
+            .clickable { onClick() }
     ) {
         Card(
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f), // imagem quadrada
+                .aspectRatio(1f),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Image(
@@ -76,7 +82,7 @@ fun ProdutoCardPreview() {
             preco = 245.99,
             imagemRes = R.drawable.chuteira_nike_01,
             descricao = ""
-        )
+        ),  onClick = {}
     )
 }
 

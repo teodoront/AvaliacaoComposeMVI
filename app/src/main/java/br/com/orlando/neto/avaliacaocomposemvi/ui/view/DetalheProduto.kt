@@ -1,5 +1,6 @@
 package br.com.orlando.neto.avaliacaocomposemvi.ui.view
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -28,7 +29,11 @@ import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.White
 
 
 @Composable
-fun DetalheProdutoScreen(navController: NavController) {
+fun DetalheProdutoScreen(
+    nome: String,
+    preco: String,
+    @DrawableRes imagemRes: Int,
+    navController: NavController) {
     Box(modifier = Modifier.fillMaxSize()) {
 
         Column(
@@ -37,7 +42,7 @@ fun DetalheProdutoScreen(navController: NavController) {
                 .padding(bottom = 90.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.nike_air_max_02),
+                painter = painterResource(id = imagemRes),
                 contentDescription = "Nike Air Max Dn Essential",
                 contentScale = ContentScale.FillWidth,
                 modifier = Modifier
@@ -55,7 +60,7 @@ fun DetalheProdutoScreen(navController: NavController) {
                     .padding(horizontal = 16.dp)
             ) {
                 Text(
-                    text = "Nike Air Max Dn Essential",
+                    text = nome,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f)
@@ -105,7 +110,7 @@ fun DetalheProdutoScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "R$ 699,00",
+                text = preco,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 16.dp)
@@ -136,5 +141,9 @@ fun DetalheProdutoScreen(navController: NavController) {
 @Composable
 private fun DetalheProdutoPrev() {
     val navController = rememberNavController()
-    DetalheProdutoScreen(navController = navController)
+    DetalheProdutoScreen(
+        nome = "Nike Air Max Dn Essential",
+        preco = "R$ 699,00",
+        imagemRes = R.drawable.nike_air_max_02,
+        navController = navController)
 }

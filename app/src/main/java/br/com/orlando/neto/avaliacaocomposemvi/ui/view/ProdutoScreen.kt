@@ -35,7 +35,7 @@ fun ProdutoScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            ProdutoScreen(viewModel)
+            ProdutoContent(viewModel, navController)
         }
     }
 }

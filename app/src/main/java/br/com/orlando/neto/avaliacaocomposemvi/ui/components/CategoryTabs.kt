@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Lexend
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Orange
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.White
 
@@ -45,7 +46,7 @@ fun CategoryTabs(navController: NavController) {
                 text = {
                     Surface(
                         color = if (selectedIndex == index) Orange else Color.Transparent,
-                        contentColor = if (selectedIndex == index) Color.White else Color.Gray,
+                        contentColor = if (selectedIndex == index) White else Color.Gray,
                         shape = RoundedCornerShape(12.dp),
                         border = if (selectedIndex == index) null else BorderStroke(1.dp, Color.LightGray),
                         modifier = Modifier
@@ -58,6 +59,7 @@ fun CategoryTabs(navController: NavController) {
                         ) {
                             Text(
                                 text = categoria,
+                                fontFamily = Lexend,
                                 fontSize = 14.sp
                             )
                         }

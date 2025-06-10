@@ -1,17 +1,13 @@
 package br.com.orlando.neto.avaliacaocomposemvi.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -27,11 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.orlando.neto.avaliacaocomposemvi.R
-import br.com.orlando.neto.avaliacaocomposemvi.data.Produto
+import br.com.orlando.neto.avaliacaocomposemvi.data.Product
 
 @Composable
-fun ProdutoCard(
-    produto: Produto,
+fun ProductCard(
+    product: Product,
     modifier: Modifier = Modifier,
     onClick: () -> Unit) {
     Column(
@@ -47,8 +43,8 @@ fun ProdutoCard(
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Image(
-                painter = painterResource(id = produto.imagemRes),
-                contentDescription = produto.nome,
+                painter = painterResource(id = product.imageRes),
+                contentDescription = product.name,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
@@ -57,14 +53,14 @@ fun ProdutoCard(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = produto.nome,
-            fontSize = 14.sp,
+            text = product.name,
+            fontSize = 12.sp,
             color = Color.Gray,
             maxLines = 2
         )
 
         Text(
-            text = "R$ ${"%.2f".format(produto.preco)}",
+            text = "R$ ${"%.2f".format(product.price)}",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
@@ -74,14 +70,14 @@ fun ProdutoCard(
 
 @Preview(showBackground = true)
 @Composable
-fun ProdutoCardPreview() {
-    ProdutoCard(
-        produto = Produto(
+fun ProductCardPreview() {
+    ProductCard(
+        product = Product(
             id = 1,
-            nome = "Chuteira Nike Tiempo 10",
-            preco = 245.99,
-            imagemRes = R.drawable.chuteira_nike_01,
-            descricao = ""
+            name = "Chuteira Nike Tiempo 10",
+            price = 245.99,
+            imageRes = R.drawable.chuteira_nike_01,
+            description = ""
         ),  onClick = {}
     )
 }

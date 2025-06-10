@@ -11,13 +11,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun PerfilScreen() {
+fun CartScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Perfil",
+            text = "Carrinho",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = Color.DarkGray
@@ -27,6 +27,6 @@ fun PerfilScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun PerfilScreenScreenPreview() {
-    PerfilScreen()
+fun CartScreenPrev() {
+    CartScreen()
 }

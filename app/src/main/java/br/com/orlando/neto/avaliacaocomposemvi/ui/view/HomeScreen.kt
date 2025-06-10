@@ -30,13 +30,13 @@ import androidx.navigation.NavController
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.SearchBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.TopBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Orange
-import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
+import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProductViewModel
 import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    val viewModel: ProdutoViewModel = koinViewModel()
+    val viewModel: ProductViewModel = koinViewModel()
     val categories = listOf("Todos", "Tênis", "Botas", "Chuteiras", "Sapatênis")
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
 
@@ -93,9 +93,9 @@ fun HomeScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             if (categories[selectedIndex].lowercase() == "todos") {
-                ProdutoContent(viewModel, navController)
+                ProductContent(viewModel, navController)
             } else {
-                CategoriaScreen(categoria = categories[selectedIndex])
+                CategoryScreen(category = categories[selectedIndex])
             }
         }
     }

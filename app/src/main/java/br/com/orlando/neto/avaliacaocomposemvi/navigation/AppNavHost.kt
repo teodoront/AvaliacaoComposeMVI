@@ -11,10 +11,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import br.com.orlando.neto.avaliacaocomposemvi.R
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.NavigationBarHome
-import br.com.orlando.neto.avaliacaocomposemvi.ui.view.CarrinhoScreen
-import br.com.orlando.neto.avaliacaocomposemvi.ui.view.DetalheProdutoScreen
+import br.com.orlando.neto.avaliacaocomposemvi.ui.view.CartScreen
+import br.com.orlando.neto.avaliacaocomposemvi.ui.view.ProductDetailScreen
 import br.com.orlando.neto.avaliacaocomposemvi.ui.view.HomeScreen
-import br.com.orlando.neto.avaliacaocomposemvi.ui.view.PerfilScreen
+import br.com.orlando.neto.avaliacaocomposemvi.ui.view.ProfileScreen
 
 @Composable
 fun AppNavHost() {
@@ -39,10 +39,10 @@ fun AppNavHost() {
                 HomeScreen(navController)
             }
             composable("carrinho") {
-                CarrinhoScreen()
+                CartScreen()
             }
             composable("perfil") {
-                PerfilScreen()
+                ProfileScreen()
             }
             composable(
                 "detalheProduto/{nome}/{preco}/{imagemRes}",
@@ -52,11 +52,11 @@ fun AppNavHost() {
                     navArgument("imagemRes") { type = NavType.IntType }
                 )
             ) { backStackEntry ->
-                val nome = backStackEntry.arguments?.getString("nome") ?: ""
-                val preco = backStackEntry.arguments?.getString("preco") ?: ""
-                val imagemRes = backStackEntry.arguments?.getInt("imagemRes") ?: R.drawable.chuteira_nike_01
+                val name = backStackEntry.arguments?.getString("nome") ?: ""
+                val price = backStackEntry.arguments?.getString("preco") ?: ""
+                val imageRes = backStackEntry.arguments?.getInt("imagemRes") ?: R.drawable.chuteira_nike_01
 
-                DetalheProdutoScreen(nome, preco, imagemRes, navController)
+                ProductDetailScreen(name, price, imageRes, navController)
             }
         }
     }

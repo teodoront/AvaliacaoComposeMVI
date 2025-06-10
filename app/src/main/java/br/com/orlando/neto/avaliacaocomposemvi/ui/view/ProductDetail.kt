@@ -22,14 +22,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.orlando.neto.avaliacaocomposemvi.R
 import br.com.orlando.neto.avaliacaocomposemvi.constants.TextConstants
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.ProdutoBottomBar
+import br.com.orlando.neto.avaliacaocomposemvi.ui.components.ProductBottomBar
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Orange
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.White
 
 
 
 @Composable
-fun DetalheProdutoScreen(
+fun ProductDetailScreen(
     nome: String,
     preco: String,
     @DrawableRes imagemRes: Int,
@@ -127,9 +127,9 @@ fun DetalheProdutoScreen(
                 .fillMaxWidth()
                 .navigationBarsPadding()
         ) {
-            ProdutoBottomBar(
-                onAdicionarClick = {navController.navigate("carrinho")},
-                onCarrinhoClick = { navController.navigate("carrinho")}
+            ProductBottomBar(
+                onToAddClick = {navController.navigate("carrinho")},
+                onCartClick = { navController.navigate("carrinho")}
             )
         }
     }
@@ -139,9 +139,9 @@ fun DetalheProdutoScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun DetalheProdutoPrev() {
+private fun ProductDetailScreenPrev() {
     val navController = rememberNavController()
-    DetalheProdutoScreen(
+    ProductDetailScreen(
         nome = "Nike Air Max Dn Essential",
         preco = "R$ 699,00",
         imagemRes = R.drawable.nike_air_max_02,

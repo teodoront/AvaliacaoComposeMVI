@@ -25,10 +25,10 @@ import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Orange
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.White
 
 @Composable
-fun ProdutoBottomBar(
+fun ProductBottomBar(
     modifier: Modifier = Modifier,
-    onAdicionarClick: () -> Unit,
-    onCarrinhoClick: () -> Unit
+    onToAddClick: () -> Unit,
+    onCartClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -38,7 +38,7 @@ fun ProdutoBottomBar(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Button(
-            onClick = onAdicionarClick,
+            onClick = onToAddClick,
             modifier = Modifier
                 .weight(1f)
                 .height(50.dp),
@@ -52,7 +52,7 @@ fun ProdutoBottomBar(
         }
 
         OutlinedButton(
-            onClick = onCarrinhoClick,
+            onClick = onCartClick,
             modifier = Modifier
                 .size(50.dp),
             shape = RoundedCornerShape(16.dp),
@@ -73,9 +73,9 @@ fun ProdutoBottomBar(
 
 @Preview(showBackground = true)
 @Composable
-fun ProdutoBottomBarPreview() {
-    ProdutoBottomBar(
-        onAdicionarClick = {},
-        onCarrinhoClick = {}
+fun ProductBottomBarPreview() {
+    ProductBottomBar(
+        onToAddClick = {},
+        onCartClick = {}
     )
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Lexend
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Orange
 
 @Composable
@@ -56,6 +57,7 @@ fun NavigationBarHome(navController: NavController) {
                 label = {
                     Text(
                         text = item.label,
+                        fontFamily = Lexend,
                         fontSize = 12.sp
                     )
                 },

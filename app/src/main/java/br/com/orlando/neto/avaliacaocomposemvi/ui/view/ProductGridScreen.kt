@@ -19,34 +19,34 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import br.com.orlando.neto.avaliacaocomposemvi.intent.ProdutoIntent
+import br.com.orlando.neto.avaliacaocomposemvi.intent.ProductIntent
 import br.com.orlando.neto.avaliacaocomposemvi.R
-import br.com.orlando.neto.avaliacaocomposemvi.data.Produto
-import br.com.orlando.neto.avaliacaocomposemvi.data.ProdutoUiState
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.ProdutoCard
-import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
+import br.com.orlando.neto.avaliacaocomposemvi.data.Product
+import br.com.orlando.neto.avaliacaocomposemvi.data.ProductUiState
+import br.com.orlando.neto.avaliacaocomposemvi.ui.components.ProductCard
+import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProductViewModel
 
 
 @Composable
-fun ProdutoContent(viewModel: ProdutoViewModel, navController: NavController) {
+fun ProductContent(viewModel: ProductViewModel, navController: NavController) {
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.processIntent(ProdutoIntent.CarregarProdutos)
+        viewModel.processIntent(ProductIntent.LoadProducts)
     }
 
-    if (state.carregando) {
+    if (state.loading) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
     } else {
-        ProdutoScreenContent(state, navController)
+        ProductScreenContent(state, navController)
     }
 }
 
 
 @Composable
-fun ProdutoScreenContent(state: ProdutoUiState, navController: NavController) {
+fun ProductScreenContent(state: ProductUiState, navController: NavController) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
@@ -55,12 +55,12 @@ fun ProdutoScreenContent(state: ProdutoUiState, navController: NavController) {
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        items(state.produtos) { produto ->
-            ProdutoCard(produto = produto, onClick = {
-                val nome = Uri.encode(produto.nome)
-                val preco = Uri.encode("%.2f".format(produto.preco))
-                val imagemRes = produto.imagemRes
-                navController.navigate("detalheProduto/$nome/$preco/$imagemRes")
+        items(state.products) { product ->
+            ProductCard(product = product, onClick = {
+                val name = Uri.encode(product.name)
+                val price = Uri.encode("%.2f".format(product.price))
+                val imageRes = product.imageRes
+                navController.navigate("detalheProduto/$name/$price/$imageRes")
             })
         }
     }
@@ -69,18 +69,18 @@ fun ProdutoScreenContent(state: ProdutoUiState, navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun ProdutoScreenPreview() {
+fun ProductContentPreview() {
     val navController = NavController(LocalContext.current)
-    val mockState = ProdutoUiState(
-        produtos = listOf(
-            Produto(1, "Chuteira Nike Tiempo 10", 245.99, R.drawable.chuteira_nike_01,""),
-            Produto(2, "Nike Air Max Dn Essential", 699.00, R.drawable.nike_air_max_02, ""),
-            Produto(3, "Nike Air Max 2013", 920.00, R.drawable.nike_airmike_03, ""),
-            Produto(4, "Nike Air Zoom Upturn SC", 399.99, R.drawable.nike_air_zoom_04, "")
+    val mockState = ProductUiState(
+        products = listOf(
+            Product(1, "Chuteira Nike Tiempo 10", 245.99, R.drawable.chuteira_nike_01,""),
+            Product(2, "Nike Air Max Dn Essential", 699.00, R.drawable.nike_air_max_02, ""),
+            Product(3, "Nike Air Max 2013", 920.00, R.drawable.nike_airmike_03, ""),
+            Product(4, "Nike Air Zoom Upturn SC", 399.99, R.drawable.nike_air_zoom_04, "")
         )
     )
 
-    ProdutoScreenContent(mockState, navController)
+    ProductScreenContent(mockState, navController)
 }
 
 

@@ -14,12 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.SearchBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.TopBarHome
-import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
+import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProductViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProdutoScreen(navController: NavController) {
-    val viewModel: ProdutoViewModel = koinViewModel()
+fun ProductScreen(navController: NavController) {
+    val viewModel: ProductViewModel = koinViewModel()
 
 
     Scaffold(
@@ -35,14 +35,14 @@ fun ProdutoScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            ProdutoContent(viewModel, navController)
+            ProductContent(viewModel, navController)
         }
     }
 }
 
 @Preview
 @Composable
-private fun ProdutoScreenPrev() {
+private fun ProductScreenPrev() {
     val navController = NavController(LocalContext.current)
-    ProdutoScreen(navController)
+    ProductScreen(navController)
 }

@@ -8,16 +8,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.orlando.neto.avaliacaocomposemvi.ui.components.CategoryTabs
+import androidx.navigation.NavController
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.SearchBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.TopBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.viewmodel.ProdutoViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProdutoScreen() {
+fun ProdutoScreen(navController: NavController) {
     val viewModel: ProdutoViewModel = koinViewModel()
 
 
@@ -32,8 +33,6 @@ fun ProdutoScreen() {
         ) {
             SearchBarHome()
 
-            CategoryTabs()
-
             Spacer(modifier = Modifier.height(16.dp))
 
             ProdutoScreen(viewModel)
@@ -44,5 +43,6 @@ fun ProdutoScreen() {
 @Preview
 @Composable
 private fun ProdutoScreenPrev() {
-    ProdutoScreen()
+    val navController = NavController(LocalContext.current)
+    ProdutoScreen(navController)
 }

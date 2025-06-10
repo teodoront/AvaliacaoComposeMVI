@@ -8,13 +8,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.Orange
+import br.com.orlando.neto.avaliacaocomposemvi.ui.theme.White
 
 @Composable
-fun CategoryTabs() {
+fun CategoryTabs(navController: NavController) {
     val categories = listOf("Todos", "Tênis", "Botas", "Chuteiras", "Sapatênis")
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -28,9 +31,15 @@ fun CategoryTabs() {
         categories.forEachIndexed { index, categoria ->
             Tab(
                 selected = selectedIndex == index,
-                onClick = { selectedIndex = index },
+                onClick = {
+                    selectedIndex = index
+                    val categoriaFormatada = categoria.lowercase()
+                    if (categoriaFormatada != "todos") {
+                        navController.navigate("categoria/$categoriaFormatada")
+                    }
+                },
                 modifier = Modifier.padding(end = 0.dp),
-                selectedContentColor = Color.White,
+                selectedContentColor = White,
                 unselectedContentColor = Color.Gray,
 
                 text = {
@@ -62,5 +71,6 @@ fun CategoryTabs() {
 @Preview
 @Composable
 private fun CategoryPrev() {
-    CategoryTabs()
+    val navController = NavController(LocalContext.current)
+    CategoryTabs(navController)
 }

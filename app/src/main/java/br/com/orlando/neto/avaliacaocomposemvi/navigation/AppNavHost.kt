@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.orlando.neto.avaliacaocomposemvi.ui.components.NavigationBarHome
 import br.com.orlando.neto.avaliacaocomposemvi.ui.view.CarrinhoScreen
+import br.com.orlando.neto.avaliacaocomposemvi.ui.view.CategoriaScreen
 import br.com.orlando.neto.avaliacaocomposemvi.ui.view.HomeScreen
 import br.com.orlando.neto.avaliacaocomposemvi.ui.view.PerfilScreen
 
@@ -33,6 +34,12 @@ fun AppNavHost() {
             composable("perfil") {
                 PerfilScreen()
             }
+
+            composable("categoria/{categoria}") { backStackEntry ->
+                val categoria = backStackEntry.arguments?.getString("categoria") ?: ""
+                CategoriaScreen(categoria)
+            }
+
         }
     }
 }
